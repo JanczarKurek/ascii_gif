@@ -4,6 +4,7 @@ function __cleanup {
   rm *.gif.???
   rm *.ascii
   rm temp.gif
+  clear
   exit 0
 }
 
