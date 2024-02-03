@@ -34,12 +34,13 @@ echo "do" >> $RESULT_FILE
 for frame in temp.gif.???
 do
   echo "tput cup 0 0" >> $RESULT_FILE
-  echo 'echo "' >> $RESULT_FILE
-  img2txt $frame >> $RESULT_FILE
-  echo '"' >> $RESULT_FILE
+  echo -n 'echo "' >> $RESULT_FILE
+  img2txt $frame | gzip | base64 -w 0 >> $RESULT_FILE
+  echo '" | base64 --decode | gzip -d' >> $RESULT_FILE
   echo "sleep 0.06" >> $RESULT_FILE
 done
 
 echo "done" >> $RESULT_FILE
+
 
 __cleanup
